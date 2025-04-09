@@ -1,0 +1,10 @@
+import pandas as pd
+import glob
+from sklearn.preprocessing import StandardScaler
+
+monthly_files = sorted(glob.glob("output/train_master_20*_final.parquet"))
+dfs = [pd.read_parquet(f) for f in monthly_files]
+print(dfs)
+full_df = pd.concat(dfs, ignore_index=True)
+print(f"[INFO] Data size: {full_df.shape}")
+
